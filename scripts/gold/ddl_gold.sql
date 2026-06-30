@@ -28,6 +28,10 @@ ON ci.cst_key=ca.cid
 LEFT JOIN silver.erp_loc_a101 la
 ON ci.cst_key=la.cid;
 
+GO
+
+
+
 --======================================================
 
 --CREATE DIMENSION:gold.dim_customers
@@ -57,6 +61,10 @@ LEFT JOIN silver.erp_px_cat_g1v2 pc
 ON pn.cat_id = pc.id
 WHERE prd_end_dt IS NULL;
 
+GO
+
+
+
 
 --======================================================
 
@@ -65,7 +73,7 @@ WHERE prd_end_dt IS NULL;
 --=======================================================
 
 IF OBJECT_ID('gold.fact_sales','V') IS NOT NULL
-DROP VIEW gold.dim_sales;
+DROP VIEW gold.fact_sales;
 GO
 
 
@@ -86,5 +94,4 @@ LEFT JOIN gold.dim_products pr
 ON sd.sls_prd_key= pr.product_number
 LEFT JOIN gold.dim_customers cu
 ON sd.sls_cust_id=cu.customer_id;
-
 
